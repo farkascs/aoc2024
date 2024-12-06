@@ -16,8 +16,25 @@ lines.forEach(line => {
     }
 });
 
-console.log(listA);
-console.log(listB);
+console.log(listA.sort((a, b) => a - b));
+console.log(listB.sort((a, b) => a - b));
 
 console.log(listA.length);
 console.log(listB.length);
+
+let diff = (listA, listb) => {
+    let similarityScore = 0;
+
+    for (let i = 0; i < listA.length; i++) {
+        let instancesInB = 0;
+        for (let j = 0; j < listB.length; j++) {
+            if (listA[i] === listB[j]) {
+                instancesInB++;
+            }
+        }
+        similarityScore += listA[i] * instancesInB;
+    }
+    return similarityScore;
+}
+
+console.log(diff(listA, listB));
